@@ -135,6 +135,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3ea1dfedd758dca4b8675dc434aa4564, type: 3}
   - {fileID: 21300000, guid: 670bf270e14ed244a89c1fba66a1c865, type: 3}
   - {fileID: 21300000, guid: ceaffd995e0194e409f5530e5966b273, type: 3}
+  types: SeeWeed
 --- !u!331 &7675287471193902017
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 110330
+  m_InstanceId: 116858
 --- !u!1 &5635269135020669157
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,4 +325,4 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 110324
+  m_InstanceId: 116852

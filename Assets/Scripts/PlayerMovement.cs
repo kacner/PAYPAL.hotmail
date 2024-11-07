@@ -51,6 +51,14 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject OPENINVTEXT;
 
+    public AudioSource playminimal;
+
+    private bool isMining = false;
+    public AudioSource Mining;
+    public AudioClip Seeweed;
+    public AudioClip Scrap;
+    public AudioClip Coral;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -63,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isMining)
+
         if (Input.GetKeyDown(KeyCode.Tab))
             SwitchInventory();
 
@@ -72,8 +82,22 @@ public class PlayerMovement : MonoBehaviour
             moveY = Input.GetAxisRaw("Vertical"); //value -1 or 1. down and up
 
             moveDirection = new Vector2(moveX, moveY).normalized;
+
+            animator.SetFloat("Speed", rb.velocity.magnitude);
         }
-        
+
+        if (moveDirection.x != 0)
+        { 
+            animator.SetFloat("Horizontal", moveX);
+            animator.SetFloat("Vertical", 0);
+        }
+        if(moveDirection.y != 0)
+        {
+            animator.SetFloat("Vertical", moveY);
+            animator.SetFloat("Horizontal", 0);
+        }
+
+
         if (moveDirection.y != 0)
         {
             LastLookDir = moveDirection;
@@ -153,7 +177,6 @@ public class PlayerMovement : MonoBehaviour
 
         while (time < duration)
         {
-
             CanMove = false;
             Vector2 targetVelocity = LastLookDir * maxSpeed; // desired velocity based on input
             Vector2 velocityReq = targetVelocity - rb.velocity; // how much we need to change the velocity
@@ -175,6 +198,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            isMining = true;
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             startPosition = transform.position;
@@ -186,8 +210,21 @@ public class PlayerMovement : MonoBehaviour
             if (hit.collider != null && hit.collider.CompareTag("ForestTile"))
             {
                 hit.collider.gameObject.GetComponent<ForestTile>().TakeDMG(MiningDamage);
-            }
+                if (hit.collider.gameObject.GetComponent<ForestTile>().types == "Coral")
+                {
+                    Mining.clip = Coral;
+                }
+                else if (hit.collider.gameObject.GetComponent<ForestTile>().types == "Scrap")
+                {
+                    Mining.clip = Scrap;
+                }
+                else
+                {
+                    Mining.clip = Seeweed;
+                }
 
+                Mining.Play();
+            }
 
             if (hit.collider != null)
             {
@@ -198,8 +235,8 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-
-        
+         else
+            isMining = false;
     }
 
     IEnumerator Breathing()
@@ -212,7 +249,7 @@ public class PlayerMovement : MonoBehaviour
                 item.Play();
             }
             yield return new WaitForSeconds(1f);
-            breathingsorurce.pitch = 1 + Random.RandomRange(-0.25f, 0.25f);
+            breathingsorurce.pitch = 1 + Random.RandomRange(-0.15f, 0.15f);
             breathingsorurce.Play();
         }
     }
@@ -221,14 +258,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isInventoryOpen)
         {
-            inventoryPanel.SetActive(false);
-            isInventoryOpen = false;
+            CLouseInventory();
         }
         else
         {
             inventoryPanel.SetActive(true);
             isInventoryOpen = true;
             Destroy(OPENINVTEXT);
+            playminimal.Play();
         }
     }
 
@@ -236,5 +273,6 @@ public class PlayerMovement : MonoBehaviour
     {
         inventoryPanel.SetActive(false);
         isInventoryOpen = false;
+        playminimal.Play();
     }
 }

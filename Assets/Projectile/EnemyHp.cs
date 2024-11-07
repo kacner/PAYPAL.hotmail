@@ -113,7 +113,9 @@ public class EnemyHp : MonoBehaviour
 
                 isDead = true;
 
-               wavespawner.allSpawnedEnemyes.RemoveAt(0);
+                wavespawner.allSpawnedEnemyes.RemoveAt(0);
+
+                wavespawner.uppgrademanager.Money++;
             }
             else
             {

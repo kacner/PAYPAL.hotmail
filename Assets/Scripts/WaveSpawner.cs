@@ -32,6 +32,12 @@ public class WaveSpawner : MonoBehaviour
     public float TimeTillNextRoundfloat;
     // Update is called once per frame
 
+    public AudioSource StartRoundSound;
+
+    public AudioSource FightMusic;
+
+    public UppgradeManager uppgrademanager;
+
     private void Start()
     {
         StartCoroutine(StartWaveSpawning());
@@ -71,22 +77,26 @@ public class WaveSpawner : MonoBehaviour
 
             IsWaveOnCooldown = true;
             TimeTillNextRoundfloat = TimeBetweenWaves;
+            StartCoroutine(StopFightMusic());
             yield return new WaitForSeconds(TimeBetweenWaves);
             StartCoroutine(spawnWave());
             IsWaveOnCooldown = false;
             waveIntensity++;
-            TimeBetweenSpawns += 2;
+            TimeBetweenWaves += 2;
 
         }
     }
 
     IEnumerator spawnWave()
     {
+        StartCoroutine(StartFightMusic());
         IsWaveActive = true;
         CurrentWaveIntensity = waveIntensity;
 
         while (CurrentWaveIntensity > 0)
         {
+            StartRoundSound.Play();
+
             int randomnum = Random.RandomRange(0, AllEnemyes.Length);
             int randomspawn = Random.RandomRange(0, spawnpoints.Length);
 
@@ -100,5 +110,16 @@ public class WaveSpawner : MonoBehaviour
 
             yield return new WaitForSeconds(TimeBetweenSpawns);
         }
+    }
+
+    IEnumerator StartFightMusic()
+    {
+        FightMusic.Play();
+        yield return null;
+    }
+    IEnumerator StopFightMusic()
+    {
+        FightMusic.Stop();
+        yield return null;
     }
 }

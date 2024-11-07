@@ -80,7 +80,7 @@ public class ActivateTurret : MonoBehaviour
 
     IEnumerator FlashDisplay()
     {
-        float duration = 0.5f;
+        float duration = 0.25f;
         float timer = 0;
 
         Vector3 originalScale = interactDisplay.transform.localScale;
@@ -110,7 +110,7 @@ public class ActivateTurret : MonoBehaviour
     IEnumerator FadeOut()
     {
         float time = 0;
-        float duration = 1;
+        float duration = 0.25f;
 
 
         while (time < duration)

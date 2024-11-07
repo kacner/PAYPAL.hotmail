@@ -12,6 +12,7 @@ public class ForestTile : MonoBehaviour
     private SpriteRenderer[] breakingSprite;
     private SpriteRenderer realspriterenderer;
     private bool canTakeDamage = true;
+    public string types;
 
     private void Start()
     {
@@ -29,6 +30,8 @@ public class ForestTile : MonoBehaviour
 
     public void TakeDMG(int damange)
     {
+
+
         if (!canTakeDamage)
             return;
 

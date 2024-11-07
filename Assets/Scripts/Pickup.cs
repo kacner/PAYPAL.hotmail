@@ -9,10 +9,18 @@ public class Pickup : MonoBehaviour
     private LineRenderer linerenderer;
     private float cooldown = -0.1f;
     public string Type;
+    private SpriteRenderer spriteRenderer;
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         linerenderer = GetComponent<LineRenderer>();
         player = GameObject.Find("Player");
+
+
+        if (Type == "Coral")
+        {
+            SetRandomPureColor();
+        }
     }
 
     // Update is called once per frame
@@ -71,5 +79,22 @@ public class Pickup : MonoBehaviour
         }
 
         cooldown = 2f;
+    }
+
+    void SetRandomPureColor()
+    {
+        Color[] pureColors = new Color[]
+        {
+            Color.red,  
+            Color.green, 
+            Color.blue,   
+            Color.yellow, 
+            Color.cyan,  
+            Color.magenta  
+        };
+
+        Color randomColor = pureColors[Random.Range(0, pureColors.Length)];
+
+        spriteRenderer.color = randomColor;
     }
 }

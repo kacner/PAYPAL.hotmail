@@ -8,6 +8,7 @@ public class SubHP : MonoBehaviour
     [SerializeField] public float CurrentHP = 5;
     public float DmgState = 2;
     // Update is called once per frame
+    public AudioSource Clonk;
 
     private void Start()
     {
@@ -23,6 +24,9 @@ public class SubHP : MonoBehaviour
         else
         {
             CurrentHP--;
+
+            if(Damage != 0)
+            Clonk.Play();
         }
 
 
@@ -55,6 +59,10 @@ public class SubHP : MonoBehaviour
     private void Update()
     {
         CurrentHP = Mathf.Clamp(CurrentHP, -1, HP);
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            TakeDamage(1);
+        }
     }
 
     public void updateHealthBar()
