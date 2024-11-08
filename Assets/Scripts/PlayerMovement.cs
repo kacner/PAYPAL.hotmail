@@ -1,8 +1,6 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -30,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     [Space(10)]
 
     [Header("Mining")]
-    [SerializeField] private int MiningDamage = 1;
+    public int MiningDamage = 1;
     public float rayLength = 10f;
     private Vector2 mousePosition;
     private Vector2 startPosition;
@@ -58,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip Seeweed;
     public AudioClip Scrap;
     public AudioClip Coral;
+    public TextMeshProUGUI backspace; 
 
     void Start()
     {
@@ -71,10 +70,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (isMining)
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-            SwitchInventory();
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                SwitchInventory();
+            }
 
         if (CanMove)
         {

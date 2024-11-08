@@ -34,16 +34,30 @@ public class WaveSpawner : MonoBehaviour
 
     public AudioSource StartRoundSound;
 
-    public AudioSource FightMusic;
+    //public AudioSource FightMusic;
 
     public UppgradeManager uppgrademanager;
 
+    public SubHP subhp;
+
+    public SubMovement submovement;
+
+    public ActivateTurret activateturret;
+
+    public int CurrentWave = 1;
+    public TextMeshProUGUI waveText;
     private void Start()
     {
         StartCoroutine(StartWaveSpawning());
     }
     void Update()
     {
+        waveText.text = "Round: " + CurrentWave.ToString();
+        if (subhp.CurrentHP >= subhp.HP && activateturret.colliding)
+        {
+            submovement.StartMOvement();
+        }
+
         TimeTillNextRoundfloat -= Time.deltaTime;
         TimeTillNextRoundfloat = Mathf.Clamp(TimeTillNextRoundfloat, 0, TimeBetweenWaves);
 
@@ -68,6 +82,8 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator StartWaveSpawning()
     {
+        yield return new WaitForSeconds(3f);
+
         while (true)//may cause memory leak
         {
             while (IsWaveActive) //may cause memory leak
@@ -77,19 +93,20 @@ public class WaveSpawner : MonoBehaviour
 
             IsWaveOnCooldown = true;
             TimeTillNextRoundfloat = TimeBetweenWaves;
-            StartCoroutine(StopFightMusic());
+            //StartCoroutine(StopFightMusic());
             yield return new WaitForSeconds(TimeBetweenWaves);
             StartCoroutine(spawnWave());
             IsWaveOnCooldown = false;
             waveIntensity++;
             TimeBetweenWaves += 2;
+            CurrentWave++;
 
         }
     }
 
     IEnumerator spawnWave()
     {
-        StartCoroutine(StartFightMusic());
+        //StartCoroutine(StartFightMusic());
         IsWaveActive = true;
         CurrentWaveIntensity = waveIntensity;
 
@@ -112,7 +129,7 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
-    IEnumerator StartFightMusic()
+    /*IEnumerator StartFightMusic()
     {
         FightMusic.Play();
         yield return null;
@@ -121,5 +138,5 @@ public class WaveSpawner : MonoBehaviour
     {
         FightMusic.Stop();
         yield return null;
-    }
+    }*/
 }

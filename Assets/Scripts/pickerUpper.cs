@@ -60,6 +60,8 @@ public class pickerUpper : MonoBehaviour
             Upgrademanager.Money += 5;
         else if (thing.GetComponent<Pickup>().Type == "Coral")
             Upgrademanager.Money += 10;
+        else
+            Upgrademanager.Money += 8;
     }
 
     IEnumerator Wait(GameObject item)

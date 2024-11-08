@@ -35,7 +35,7 @@ public class Pickup : MonoBehaviour
 
 
         if (isAttached)
-        {
+        {   
             linerenderer.SetPosition(0, transform.position); // Current object position
             linerenderer.SetPosition(1, player.transform.position); // Player position
         }
@@ -48,6 +48,7 @@ public class Pickup : MonoBehaviour
 
     private void Attach()
     {
+
         isAttached = true;
         linerenderer.enabled = true;
 
@@ -60,6 +61,7 @@ public class Pickup : MonoBehaviour
 
     public void Dettach()
     {
+        Destroy(player.GetComponent<PlayerMovement>().backspace.gameObject);
         isAttached = false;
         if (distanceJoint == null)
         {

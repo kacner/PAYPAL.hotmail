@@ -67,6 +67,8 @@ public class UppgradeManager : MonoBehaviour
     public TextMeshProUGUI FinalCostText;
     public SubHP subhp;
 
+    public PlayerMovement playermovement;
+
 
     private void Start()
     {
@@ -250,7 +252,7 @@ public class UppgradeManager : MonoBehaviour
                 HealingUpgradeAmount = HealingWantToBuyint + HealingUpgradeAmount;
                 HealingUpgradeAmount = Mathf.Clamp(HealingUpgradeAmount, 0, MaxUppgradeAmount);
 
-                subhp.CurrentHP += 5f;
+                subhp.CurrentHP += HealingWantToBuyint * 5f;
                 subhp.updateHealthBar();
 
 
@@ -265,9 +267,13 @@ public class UppgradeManager : MonoBehaviour
                 WalkUpgradeAmount = WalkWantToBuyint + WalkUpgradeAmount;
                 WalkUpgradeAmount = Mathf.Clamp(WalkUpgradeAmount, 0, MaxUppgradeAmount);
 
+                playermovement.maxSpeed = 1.5f * WalkUpgradeAmount + 3;
+
 
                 MineUpgradeAmount = MineWantToBuyint + MineUpgradeAmount;
                 MineUpgradeAmount = Mathf.Clamp(MineUpgradeAmount, 0, MaxUppgradeAmount);
+
+                playermovement.MiningDamage = MineUpgradeAmount + 1;
 
 
                 HealingWantToBuyint = 0;

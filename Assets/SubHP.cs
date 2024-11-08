@@ -1,18 +1,22 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SubHP : MonoBehaviour
 {
     public Image Slider;
-    [SerializeField] private float HP = 20;
-    [SerializeField] public float CurrentHP = 5;
+    public float HP = 20;
+    public float CurrentHP = 5;
     public float DmgState = 2;
     // Update is called once per frame
     public AudioSource Clonk;
+    public TextMeshProUGUI wintext;
 
+    public SubMovement submovement;
     private void Start()
     {
         updateHealthBar();
+        wintext.enabled = false;
     }
 
     public void TakeDamage(float Damage)
@@ -23,10 +27,11 @@ public class SubHP : MonoBehaviour
         }
         else
         {
-            CurrentHP--;
-
-            if(Damage != 0)
-            Clonk.Play();
+            if (Damage > 0)
+            {
+                Clonk.Play();
+                CurrentHP--;
+            }
         }
 
 
@@ -40,7 +45,7 @@ public class SubHP : MonoBehaviour
 
         if (CurrentHP >= HP)
         {
-            print("youwin");
+            wintext.enabled = true;
         }
 
         if (CurrentHP < 6)
@@ -53,16 +58,12 @@ public class SubHP : MonoBehaviour
 
     void die()
     {
-        print("SUB DIDES");
+        submovement.LooseGame();
     }
 
     private void Update()
     {
         CurrentHP = Mathf.Clamp(CurrentHP, -1, HP);
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            TakeDamage(1);
-        }
     }
 
     public void updateHealthBar()
