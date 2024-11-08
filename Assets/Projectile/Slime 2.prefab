@@ -14690,7 +14690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   current_HP: 0
-  Max_HP: 1
+  Max_HP: 2
   speed: 3
   duration: 1
   animationCurve:

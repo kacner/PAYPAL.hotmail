@@ -6,7 +6,7 @@ public class ActivateTurret : MonoBehaviour
     public PlayerMovement playermovement;
     public BoatControll boatcontroll;
     public bool colliding = false;
-    [SerializeField] private bool active = false;
+    public bool active = false;
     public cameraScript CameraScript;
     public GameObject interactDisplay;
     [SerializeField] private Color color;

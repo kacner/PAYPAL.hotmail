@@ -14574,7 +14574,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3795ed0d659ae2e4588e00213415a1c9, type: 3}
-  m_Color: {r: 0.9528302, g: 0.12136829, b: 0, a: 1}
+  m_Color: {r: 0.9528302, g: 0.12136829, b: 0, a: 0.5529412}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -14690,7 +14690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   current_HP: 0
-  Max_HP: 1
+  Max_HP: 2
   speed: 3
   duration: 1
   animationCurve:

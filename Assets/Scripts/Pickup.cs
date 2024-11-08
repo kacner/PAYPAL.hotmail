@@ -61,7 +61,9 @@ public class Pickup : MonoBehaviour
 
     public void Dettach()
     {
+        if (player.GetComponent<PlayerMovement>().backspace.gameObject != null)
         Destroy(player.GetComponent<PlayerMovement>().backspace.gameObject);
+
         isAttached = false;
         if (distanceJoint == null)
         {
@@ -88,7 +90,6 @@ public class Pickup : MonoBehaviour
         Color[] pureColors = new Color[]
         {
             Color.red,  
-            Color.green, 
             Color.blue,   
             Color.yellow, 
             Color.cyan,  

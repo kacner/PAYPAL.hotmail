@@ -11,11 +11,9 @@ public class SubMovement : MonoBehaviour
     public GameObject fuck;
     public AudioSource audiosoruce;
     public AudioSource BUbblesaudiosoruce;
-
+    public ActivateTurret activeateturret;
     IEnumerator endGameCinematic()
     {
-
-
         foreach (ParticleSystem item in Particles)
         {
             item.Play();
@@ -23,7 +21,7 @@ public class SubMovement : MonoBehaviour
 
         playermovement.ShouldCameraFollow = false;
         StartCoroutine(hsjshjs());
-
+        activeateturret.active = false;
         playermovement.CanMove = false;
         playermovement.gameObject.transform.SetParent(this.transform);
         float time = 0;
@@ -51,6 +49,7 @@ public class SubMovement : MonoBehaviour
 
     IEnumerator LOoseGame()
     {
+        activeateturret.active = false;
         playermovement.CanMove = false;
         audiosoruce.Play();
         BUbblesaudiosoruce.Play();

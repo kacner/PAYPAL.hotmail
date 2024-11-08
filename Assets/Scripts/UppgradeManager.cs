@@ -252,7 +252,7 @@ public class UppgradeManager : MonoBehaviour
                 HealingUpgradeAmount = HealingWantToBuyint + HealingUpgradeAmount;
                 HealingUpgradeAmount = Mathf.Clamp(HealingUpgradeAmount, 0, MaxUppgradeAmount);
 
-                subhp.CurrentHP += HealingWantToBuyint * 5f;
+                subhp.CurrentHP += HealingWantToBuyint * 4f;
                 subhp.updateHealthBar();
 
 

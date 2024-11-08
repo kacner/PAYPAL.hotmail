@@ -14619,8 +14619,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldAi: 1
   Target: {fileID: 0}
-  speed: 200
-  TimeBeweenHops: 0.7
+  speed: 300
+  TimeBeweenHops: 0.55
   Damage: 2
   KnockbackAmount: 20
   isRetreetAvailable: 1
