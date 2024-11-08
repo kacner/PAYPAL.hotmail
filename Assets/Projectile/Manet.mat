@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: disolveShader
+  m_Name: Manet
   m_Shader: {fileID: -6465566751694194690, guid: 6c00852b1dd227c4cb031dd8298e46ff, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -43,12 +43,12 @@ Material:
     - _DisolveScale: 17
     - _FlashAmount: 0
     - _Visible: 1
-    - _WaterOutlineThickness: 0.001
+    - _WaterOutlineThickness: 0
     - _outlineThickness: 0.1
     m_Colors:
     - _FlashColor: {r: 1, g: 1, b: 1, a: 0}
     - _InvisColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Offset: {r: 0, g: -0.1, b: 0, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Outlinecolor: {r: 1, g: 1, b: 1, a: 1}
     - _WaterColor: {r: 0.3280082, g: 0.6717225, b: 0.764151, a: 0.682353}
   m_BuildTextureStacks: []
