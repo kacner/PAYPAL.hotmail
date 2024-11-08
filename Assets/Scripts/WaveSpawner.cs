@@ -46,6 +46,7 @@ public class WaveSpawner : MonoBehaviour
 
     public int CurrentWave = 1;
     public TextMeshProUGUI waveText;
+    public TextMeshProUGUI waveText1;
     private void Start()
     {
         StartCoroutine(StartWaveSpawning());
@@ -53,6 +54,7 @@ public class WaveSpawner : MonoBehaviour
     void Update()
     {
         waveText.text = "Round: " + CurrentWave.ToString();
+        waveText1.text = "Round: " + CurrentWave.ToString();
         if (subhp.CurrentHP >= subhp.HP && activateturret.colliding)
         {
             submovement.StartMOvement();

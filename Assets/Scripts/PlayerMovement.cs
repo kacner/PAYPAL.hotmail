@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public bool ShouldCameraFollow = false;
 
     [Header("Camera")]
-    [SerializeField] private cameraScript CameraScript;
+    public cameraScript CameraScript;
 
     [HideInInspector] public Vector2 moveDirection;
     [HideInInspector] private Animator animator;
@@ -275,5 +275,10 @@ public class PlayerMovement : MonoBehaviour
         inventoryPanel.SetActive(false);
         isInventoryOpen = false;
         playminimal.Play();
+    }
+    public void FORCECLouseInventory()
+    {
+        inventoryPanel.SetActive(false);
+        isInventoryOpen = false;
     }
 }

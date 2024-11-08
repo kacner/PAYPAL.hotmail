@@ -21,6 +21,8 @@ public class cameraScript : MonoBehaviour
 
     public Light2D PlayerLight;
 
+    public Transform SubPOv; 
+
     void Start()
     {
         transform.position = MainPOV.position;
@@ -116,5 +118,12 @@ public class cameraScript : MonoBehaviour
 
         PlayerLight.intensity = intensity;
 
+    }
+
+    public void changeToSub()
+    {
+        StopAllCoroutines();
+        StartCoroutine(SwitchTo(SubPOv));
+        playerMovement.ShouldCameraFollow = false;
     }
 }

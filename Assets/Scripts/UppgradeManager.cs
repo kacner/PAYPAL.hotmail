@@ -130,7 +130,11 @@ public class UppgradeManager : MonoBehaviour
 
         FinalCost = (HealingWantToBuyint * HealingCost) + (DamageWantToBuyint * DamageCost) + (QuickWantToBuyint * QuickCost) + (WalkWantToBuyint * WalkCost) + (MineWantToBuyint * MineCost);
 
-        FinalCostText.text = "£" + FinalCost.ToString();
+        if (FinalCost > 0)
+            FinalCostText.text = "£" + FinalCost.ToString();
+        else
+            FinalCostText.text = "";
+
 
     }
 

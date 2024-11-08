@@ -61,8 +61,7 @@ public class Pickup : MonoBehaviour
 
     public void Dettach()
     {
-        if (player.GetComponent<PlayerMovement>().backspace.gameObject != null)
-        Destroy(player.GetComponent<PlayerMovement>().backspace.gameObject);
+        player.GetComponent<PlayerMovement>().backspace.text = " ";
 
         isAttached = false;
         if (distanceJoint == null)

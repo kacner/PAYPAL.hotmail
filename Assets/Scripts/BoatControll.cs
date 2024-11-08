@@ -16,7 +16,7 @@ public class BoatControll : MonoBehaviour
     public bool isActive = false;
     public ParticleSystem gunparticle;
     public float holdtimer = 0;
-   [SerializeField] private float bowHoldTime = 1f;
+   [SerializeField] private float bowHoldTime = 2f;
     public cameraScript CameraScript;
     public SpriteRenderer harpoon;
     public SpriteRenderer harpoonSprite;
@@ -41,9 +41,9 @@ public class BoatControll : MonoBehaviour
 
     void Update()
     {
-        bowHoldTime = 1 - (uppgranddemanager.QuickUpgradeAmount * 0.05f) + 0.05f;
+        bowHoldTime = 2 - (uppgranddemanager.QuickUpgradeAmount * 0.1f) + 0.1f;
 
-        animator.SetFloat("Multiplier", 2 - bowHoldTime);
+        animator.SetFloat("Multiplier", 2.5f - bowHoldTime);
 
 
         if (isActive)
@@ -66,7 +66,7 @@ public class BoatControll : MonoBehaviour
             }
             else // Mouse1 button is not held
             {
-                if (holdtimer > (bowHoldTime - 0.05f))
+                if (holdtimer > (bowHoldTime - 0.4f))
                 {
                     shoot();
                     
