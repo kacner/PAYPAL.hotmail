@@ -50,7 +50,7 @@ public class ActivateTurret : MonoBehaviour
             active = true;
             activate();
         }
-        else if (Input.GetKeyDown(KeyCode.E) && colliding && active)
+        else if (Input.GetKeyDown(KeyCode.E) && active)
         {
             active = false;
             deactivate();

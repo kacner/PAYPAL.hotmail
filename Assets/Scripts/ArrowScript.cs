@@ -69,7 +69,7 @@ public class ArrowScript : MonoBehaviour
 
             print(ChargedTime + "      " + MaxChargeTime);
 
-            enemyHP.TakeDmg(damange, latePlayerPos, 20f, this.gameObject);
+            enemyHP.TakeDmg(damange, latePlayerPos, enemyHP.gameObject.GetComponent<EnemyAi>().KnockbackAmount, this.gameObject);
 
             applyKnockback(collision.transform.position, 8f);
 

@@ -1323,8 +1323,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 0.7058824}
+        key0: {r: 1, g: 0, b: 0, a: 0}
+        key1: {r: 1, g: 0, b: 0, a: 0.7058824}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0.827451}
         key4: {r: 0, g: 0, b: 0, a: 0.15686275}
@@ -6153,8 +6153,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 0.7058824}
+        key0: {r: 1, g: 0, b: 0, a: 0}
+        key1: {r: 1, g: 0, b: 0, a: 0.7058824}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0.827451}
         key4: {r: 0, g: 0, b: 0, a: 0.15686275}
@@ -10983,8 +10983,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 0.7058824}
+        key0: {r: 1, g: 0, b: 0, a: 0}
+        key1: {r: 1, g: 0, b: 0, a: 0.7058824}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0.827451}
         key4: {r: 0, g: 0, b: 0, a: 0.15686275}
@@ -14619,12 +14619,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldAi: 1
   Target: {fileID: 0}
-  speed: 250
+  jellyfishSpeed: 225
   TimeBeweenHops: 2
+  JellyfishMovement: 1
+  Fishspeed: 0
+  shouldFace: 0
   Damage: 2
   KnockbackAmount: 20
   isRetreetAvailable: 1
   retreatCooldown: 1
+  isDistancing: 0
 --- !u!61 &6748746906686654484
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14724,9 +14728,13 @@ MonoBehaviour:
   ActivatingDeathParticles:
   - {fileID: 2522307475889792436}
   - {fileID: 2936368670279232568}
+  - {fileID: 6577709723978056763}
   isDead: 0
   wavespawner: {fileID: 0}
   Damage: 1
+  sucideFisk: 0
+  DamageSystem: {fileID: 0}
+  isSquirk: 0
 --- !u!111 &6331497798618238995
 Animation:
   m_ObjectHideFlags: 0

@@ -30,8 +30,11 @@ public class EnemyHp : MonoBehaviour
 
     [SerializeField] private float Damage = 1;
 
-    private bool hasremoved = false;
+    [SerializeField] private bool sucideFisk = false;
 
+    [SerializeField] private ParticleSystem DamageSystem;
+
+    [SerializeField] private bool isSquirk = false;
     void Start()
     {
         protectedObjects = new Transform[transform.childCount];
@@ -109,19 +112,7 @@ public class EnemyHp : MonoBehaviour
 
             if ((current_HP - dmg) <= 0)
             {
-                DisableCollider();
-
-                StartCoroutine(RollDeathCGI());
-
-                isDead = true;
-
-                if (hasremoved)
-                {
-                    wavespawner.allSpawnedEnemyes.RemoveAt(Random.Range(0, wavespawner.allSpawnedEnemyes.Count));
-                    hasremoved = true;
-                }
-
-                wavespawner.uppgrademanager.Money++;
+                InitiateDeath();
             }
             else
             {
@@ -218,8 +209,46 @@ public class EnemyHp : MonoBehaviour
     {
         if (collision.tag == "Sub")
         {
-            collision.GetComponent<SubHP>().TakeDamage(Damage);
+            if (isSquirk)
+                StartCoroutine(contrinueingDMG(collision.gameObject));
+            else
+                collision.GetComponent<SubHP>().TakeDamage(Damage);
+
             rb.AddForce(transform.up * 15, ForceMode2D.Impulse);
+
+            if (sucideFisk)
+            {
+                applyKnockback(GetComponent<EnemyAi>().Target.transform.position, GetComponent<EnemyAi>().KnockbackAmount * 2);
+                Invoke("InitiateDeath", 0.5f);
+                DamageSystem.Play();
+
+                StartCoroutine(RollDeathCGI());
+            }
+
+        }
+    }
+
+    private void InitiateDeath()
+    {
+        DisableCollider();
+
+        StartCoroutine(RollDeathCGI());
+
+        isDead = true;
+
+        wavespawner.allSpawnedEnemyes.RemoveAt(0);
+
+        wavespawner.uppgrademanager.Money++;
+    }
+
+    IEnumerator contrinueingDMG(GameObject sub)
+    {
+        while (true)
+        {
+            sub.GetComponent<SubHP>().TakeDamage(Damage);
+            yield return new WaitForSeconds(2f);
+            if (isDead)
+                break;
         }
     }
 }

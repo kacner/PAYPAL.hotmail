@@ -116,8 +116,15 @@ public class WaveSpawner : MonoBehaviour
         {
             StartRoundSound.Play();
 
-            int randomnum = Random.RandomRange(0, AllEnemyes.Length);
-            int randomspawn = Random.RandomRange(0, spawnpoints.Length);
+            int randomnum;
+            int randomspawn;
+
+            do
+            {
+                randomnum = Random.RandomRange(0, AllEnemyes.Length);
+                randomspawn = Random.RandomRange(0, spawnpoints.Length);
+            }
+            while (CurrentWaveIntensity - enemycost[randomnum] < 0);
 
 
             GameObject Spawed = Instantiate(AllEnemyes[randomnum], spawnpoints[randomspawn].transform.position, Quaternion.identity);
@@ -127,6 +134,7 @@ public class WaveSpawner : MonoBehaviour
 
             CurrentWaveIntensity -= enemycost[randomnum];
 
+            
             yield return new WaitForSeconds(TimeBetweenSpawns);
         }
     }
