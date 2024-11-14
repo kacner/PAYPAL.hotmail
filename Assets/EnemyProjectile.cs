@@ -21,25 +21,29 @@ public class EnemyProjectile : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (CurrentshootCooldown < 0)
+        if (enemyai.canfire)
         {
-            foreach (ParticleSystem item in shootingPFX)
+
+            if (CurrentshootCooldown < 0)
             {
-                item.Play();
+                foreach (ParticleSystem item in shootingPFX)
+                {
+                    item.Play();
+                }
+
+                StartCoroutine(Attackanim());
+                GameObject SpawnedProjectile = Instantiate(projectile, FirePoint.transform.position, Quaternion.identity);
+                SpawnedProjectile.GetComponent<Projectile>().enemyAi = enemyai;
+
+                Vector2 dir = enemyai.Target.transform.position - SpawnedProjectile.transform.position;
+                SpawnedProjectile.GetComponent<Rigidbody2D>().AddForce(dir * projectileSpeed, ForceMode2D.Impulse);
+
+                CurrentshootCooldown = shootCooldown;
             }
-
-            StartCoroutine(Attackanim());
-            GameObject SpawnedProjectile = Instantiate(projectile, FirePoint.transform.position, Quaternion.identity);
-            SpawnedProjectile.GetComponent<Projectile>().enemyAi = enemyai;
-
-            Vector2 dir = enemyai.Target.transform.position - SpawnedProjectile.transform.position;
-            SpawnedProjectile.GetComponent<Rigidbody2D>().AddForce(dir * projectileSpeed, ForceMode2D.Impulse);
-            
-            CurrentshootCooldown = shootCooldown;
-        }
-        else
-        {
-            CurrentshootCooldown -= Time.deltaTime;
+            else
+            {
+                CurrentshootCooldown -= Time.deltaTime;
+            }
         }
     }
 

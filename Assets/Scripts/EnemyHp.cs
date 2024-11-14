@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using System.Collections;
 using UnityEngine;
 
@@ -214,15 +215,16 @@ public class EnemyHp : MonoBehaviour
             else
                 collision.GetComponent<SubHP>().TakeDamage(Damage);
 
-            rb.AddForce(transform.up * 15, ForceMode2D.Impulse);
-
             if (sucideFisk)
             {
-                applyKnockback(GetComponent<EnemyAi>().Target.transform.position, GetComponent<EnemyAi>().KnockbackAmount * 2);
                 Invoke("InitiateDeath", 0.5f);
                 DamageSystem.Play();
 
                 StartCoroutine(RollDeathCGI());
+            }
+            else
+            {
+                rb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
             }
 
         }

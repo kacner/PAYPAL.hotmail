@@ -1323,8 +1323,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.9843138, g: 0, b: 0.12941177, a: 0}
-        key1: {r: 0.9843138, g: 0, b: 0.12941177, a: 0.7058824}
+        key0: {r: 0.9843138, g: 0.5294118, b: 0.15294118, a: 0}
+        key1: {r: 0.9843138, g: 0.5294118, b: 0.15294118, a: 0.7058824}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0.827451}
         key4: {r: 0, g: 0, b: 0, a: 0.15686275}
@@ -6153,8 +6153,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.9843138, g: 0, b: 0.12941177, a: 0}
-        key1: {r: 0.9843138, g: 0, b: 0.12941177, a: 0.7058824}
+        key0: {r: 0.9843138, g: 0.5294118, b: 0.15294118, a: 0}
+        key1: {r: 0.9843138, g: 0.5294118, b: 0.15294118, a: 0.7058824}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0.827451}
         key4: {r: 0, g: 0, b: 0, a: 0.15686275}
@@ -20607,8 +20607,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.9843138, g: 0, b: 0.12941177, a: 0}
-        key1: {r: 0.9843138, g: 0, b: 0.12941177, a: 0.7058824}
+        key0: {r: 0.9843138, g: 0.5294118, b: 0.15294118, a: 0}
+        key1: {r: 0.9843138, g: 0.5294118, b: 0.15294118, a: 0.7058824}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0.827451}
         key4: {r: 0, g: 0, b: 0, a: 0.15686275}
@@ -33913,6 +33913,7 @@ MonoBehaviour:
   isRetreetAvailable: 1
   retreatCooldown: 1
   isDistancing: 1
+  canfire: 0
 --- !u!61 &6748746906686654484
 BoxCollider2D:
   m_ObjectHideFlags: 0

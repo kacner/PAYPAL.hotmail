@@ -19,7 +19,7 @@ public class EnemyAi : MonoBehaviour
     [Header("MainSetting")]
     [SerializeField] private bool JellyfishMovement = true;
     [SerializeField] private float Fishspeed;
-    [SerializeField] private bool shouldFace = false;
+    public bool shouldFace = false;
     [Space(10)] 
 
     private EnemyHp enemyHp;
@@ -34,6 +34,7 @@ public class EnemyAi : MonoBehaviour
 
     [SerializeField] private bool isDistancing = false;
     private bool isRunnning = false;
+    public bool canfire = false;
     private void Start()
     {
         enemyHp = GetComponent<EnemyHp>();
@@ -75,6 +76,7 @@ public class EnemyAi : MonoBehaviour
             }
             else
             {
+                canfire = true;
                 StartCoroutine(OscillateMovement());
             }
 

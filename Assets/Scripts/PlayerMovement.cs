@@ -56,7 +56,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip Seeweed;
     public AudioClip Scrap;
     public AudioClip Coral;
-    public TextMeshProUGUI backspace; 
+    public TextMeshProUGUI backspace;
+    private bool isslowed = false;
 
     void Start()
     {
@@ -70,12 +71,35 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        animator.SetBool("isMining", isMining);
+        /*
+        if (isMining && !isslowed)
+        {
+            isslowed = true;
+            maxSpeed /= 2;
+        }
+        else if (!isMining && isslowed)
+        {
+            isslowed = false;
+            maxSpeed *= 2;
+        }*/
+
+        if (isMining && !isslowed)
+        {
+            isslowed = true;
+            maxSpeed /= 10000;
+        }
+        else if (!isMining && isslowed)
+        {
+            isslowed = false;
+            maxSpeed *= 10000;
+        }
 
 
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                SwitchInventory();
-            }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            SwitchInventory();
+        }
 
         if (CanMove)
         {
@@ -87,12 +111,12 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Speed", rb.velocity.magnitude);
         }
 
-        if (moveDirection.x != 0)
+        if (moveDirection.x != 0 && rb.velocity.magnitude > 0.1f)
         { 
             animator.SetFloat("Horizontal", moveX);
             animator.SetFloat("Vertical", 0);
         }
-        if(moveDirection.y != 0)
+        if (moveDirection.y != 0 && rb.velocity.magnitude > 0.1f)
         {
             animator.SetFloat("Vertical", moveY);
             animator.SetFloat("Horizontal", 0);

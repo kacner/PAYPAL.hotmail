@@ -14,6 +14,7 @@ public class SubHP : MonoBehaviour
 
     public SubMovement submovement;
     public bool Done = false;
+    public cameraScript camerascript;
     private void Start()
     {
         updateHealthBar();
@@ -28,6 +29,7 @@ public class SubHP : MonoBehaviour
             if ((CurrentHP - Damage) <= 0)
             {
                 die();
+                camerascript.StartShake();
             }
             else
             {
@@ -35,6 +37,7 @@ public class SubHP : MonoBehaviour
                 {
                     Clonk.Play();
                     CurrentHP--;
+                    camerascript.StartShake();
                 }
             }
 
