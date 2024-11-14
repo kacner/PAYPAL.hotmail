@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class ArrowScript : MonoBehaviour
 {
-    private Vector3 mousePos;
-    private Camera mainCam;
     private Rigidbody2D rb;
-    private Vector3 direction;
 
     [Header("WindFX")]
     public GameObject WindFx;
@@ -65,10 +62,6 @@ public class ArrowScript : MonoBehaviour
 
         if (enemyHP != null)
         {
-            Debug.Log("Hit detected on enemy!");
-
-            print(ChargedTime + "      " + MaxChargeTime);
-
             enemyHP.TakeDmg(damange, latePlayerPos, enemyHP.gameObject.GetComponent<EnemyAi>().KnockbackAmount, this.gameObject);
 
             applyKnockback(collision.transform.position, 8f);

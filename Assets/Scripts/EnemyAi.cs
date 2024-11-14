@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
@@ -32,7 +33,7 @@ public class EnemyAi : MonoBehaviour
     [SerializeField] private float retreatCooldown = 1f;
 
     [SerializeField] private bool isDistancing = false;
-    private bool hasactivated = false;
+    private bool isRunnning = false;
     private void Start()
     {
         enemyHp = GetComponent<EnemyHp>();
@@ -66,7 +67,7 @@ public class EnemyAi : MonoBehaviour
         {
             Vector2 facingDirection = (Target.transform.position - transform.position).normalized;
 
-            float rnd = Random.RandomRange(4f, 6f);
+            float rnd = Random.RandomRange(6f, 8f);
 
             if (Vector2.Distance(transform.position, Target.transform.position) > rnd)
             {
@@ -74,8 +75,6 @@ public class EnemyAi : MonoBehaviour
             }
             else
             {
-                rb.velocity = Vector3.zero;
-                if (!hasactivated)
                 StartCoroutine(OscillateMovement());
             }
 
@@ -132,32 +131,33 @@ public class EnemyAi : MonoBehaviour
     }
     private IEnumerator OscillateMovement()
     {
-        hasactivated = true;
 
-        StartCoroutine(MoveForsSeconds(2f, 5));
-        yield return new WaitForSeconds(2f);
-
-        while (true)
+        if (transform.position.x < Target.transform.position.x && !isRunnning) // is left of target
         {
-            StartCoroutine(MoveForsSeconds(4f, -5));
-            yield return new WaitForSeconds(4f);
-
-            StartCoroutine(MoveForsSeconds(4f, 5));
-            yield return new WaitForSeconds(4f);
+            rb.velocity = Vector2.zero;
+            StartCoroutine(ApplyForceforTime(2f, new Vector2(1, 0)));
+            yield return new WaitForSeconds(3f);
+        }
+        else if (transform.position.x > Target.transform.position.x && !isRunnning) // is right
+        {
+            rb.velocity = Vector2.zero;
+            StartCoroutine(ApplyForceforTime(2f, new Vector2(-1, 0)));
+            yield return new WaitForSeconds(3f);
         }
     }
 
-    private IEnumerator MoveForsSeconds(float duration, float Speed)
+    private IEnumerator ApplyForceforTime(float duration, Vector2 direction)
     {
-        float timer = 0;
-
-        while (timer < duration)
+        rb.velocity = Vector2.zero;
+        isRunnning = true;
+        float time = 0;
+        while (time < duration)
         {
-            rb.velocity = new Vector2(Speed * 0.8f, rb.velocity.y);
-
-            timer += Time.deltaTime;
+            rb.AddForce(direction * Fishspeed * 2f);
+            time += Time.deltaTime;
             yield return null;
         }
-        rb.velocity = Vector3.zero;
+        yield return new WaitForSeconds(1f);
+        isRunnning = false;
     }
 }
