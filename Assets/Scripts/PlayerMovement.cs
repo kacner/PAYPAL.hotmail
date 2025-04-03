@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -51,13 +52,14 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource playminimal;
 
-    private bool isMining = false;
+    [SerializeField] private bool isMining = false;
     public AudioSource Mining;
     public AudioClip Seeweed;
     public AudioClip Scrap;
     public AudioClip Coral;
     public TextMeshProUGUI backspace;
     private bool isslowed = false;
+    [SerializeField] private float CurrentSpeed = 0;
 
     void Start()
     {
@@ -72,29 +74,22 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         animator.SetBool("isMining", isMining);
-        /*
-        if (isMining && !isslowed)
+
+
+        if (isMining)
         {
+            CurrentSpeed = maxSpeed * 0.1f;
             isslowed = true;
-            maxSpeed /= 2;
         }
         else if (!isMining && isslowed)
         {
+            CurrentSpeed = maxSpeed;
             isslowed = false;
-            maxSpeed *= 2;
-        }*/
-
-        if (isMining && !isslowed)
-        {
-            isslowed = true;
-            maxSpeed /= 10000;
         }
-        else if (!isMining && isslowed)
+        else
         {
-            isslowed = false;
-            maxSpeed *= 10000;
+            CurrentSpeed = maxSpeed;
         }
-
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -167,14 +162,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb != null)
         {
-            Vector2 targetVelocity = moveDirection * maxSpeed; // desired velocity based on input
+            Vector2 targetVelocity = moveDirection * CurrentSpeed; // desired velocity based on input
             Vector2 velocityReq = targetVelocity - rb.velocity; // how much we need to change the velocity
 
             Vector2 moveforce = velocityReq * acceleration; //calculate the force needed to reach the target velocity considering acceleration
 
             rb.AddForce(moveforce * Time.deltaTime, ForceMode2D.Force); //applyes the movement to the rb
 
-            acceleration = maxSpeed + 325 / 0.9f;
+            acceleration = CurrentSpeed + 325 / 0.9f;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -203,14 +198,14 @@ public class PlayerMovement : MonoBehaviour
         while (time < duration)
         {
             CanMove = false;
-            Vector2 targetVelocity = LastLookDir * maxSpeed; // desired velocity based on input
+            Vector2 targetVelocity = LastLookDir * CurrentSpeed; // desired velocity based on input
             Vector2 velocityReq = targetVelocity - rb.velocity; // how much we need to change the velocity
 
             Vector2 moveforce = velocityReq * acceleration; //calculate the force needed to reach the target velocity considering acceleration
 
             rb.AddForce(moveforce * Time.deltaTime, ForceMode2D.Force); //applyes the movement to the rb
 
-            acceleration = maxSpeed + 325 / 0.9f;
+            acceleration = CurrentSpeed + 325 / 0.9f;
 
 
             time += Time.deltaTime;

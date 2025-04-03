@@ -272,8 +272,7 @@ public class UppgradeManager : MonoBehaviour
                 WalkUpgradeAmount = WalkWantToBuyint + WalkUpgradeAmount;
                 WalkUpgradeAmount = Mathf.Clamp(WalkUpgradeAmount, 0, MaxUppgradeAmount);
 
-                print(playermovement.maxSpeed + "   " + 1.5f * WalkUpgradeAmount + 3);
-                playermovement.maxSpeed = (1.5f * WalkUpgradeAmount + 3) * Mathf.Pow(10, -4);
+                playermovement.maxSpeed = 1.5f * WalkUpgradeAmount + 3;
 
 
                 MineUpgradeAmount = MineWantToBuyint + MineUpgradeAmount;
