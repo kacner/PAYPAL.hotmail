@@ -248,6 +248,7 @@ public class UppgradeManager : MonoBehaviour
 
     public void Conform()
     {
+        print("CONFORM");
         if (FinalCost > 0)
         {
 
@@ -271,7 +272,8 @@ public class UppgradeManager : MonoBehaviour
                 WalkUpgradeAmount = WalkWantToBuyint + WalkUpgradeAmount;
                 WalkUpgradeAmount = Mathf.Clamp(WalkUpgradeAmount, 0, MaxUppgradeAmount);
 
-                playermovement.maxSpeed = 1.5f * WalkUpgradeAmount + 3;
+                print(playermovement.maxSpeed + "   " + 1.5f * WalkUpgradeAmount + 3);
+                playermovement.maxSpeed = (1.5f * WalkUpgradeAmount + 3) * Mathf.Pow(10, -4);
 
 
                 MineUpgradeAmount = MineWantToBuyint + MineUpgradeAmount;
