@@ -107,12 +107,10 @@ public class EnemyAi : MonoBehaviour
         yield return new WaitForSeconds(TimeBeweenHops / 2 + randomAddative);
 
         float randomSideMovement = Random.Range(-1f, 1f);
-        Vector2 perpendicular = new Vector2(-TargetDir.y, TargetDir.x); // skapar en 90 grader vinkelrät vector mot targetDir
+        Vector2 perpendicular = new Vector2(-TargetDir.y, TargetDir.x);
 
-        // Apply a small percentage of speed for the side movement
-        Vector2 randomMovement = TargetDir.normalized * jellyfishSpeed + perpendicular.normalized * randomSideMovement * (jellyfishSpeed * 0.5f); // Adjust the multiplier to control side movement
+        Vector2 randomMovement = TargetDir.normalized * jellyfishSpeed + perpendicular.normalized * randomSideMovement * (jellyfishSpeed * 0.5f);
 
-        // Apply the force
         rb.AddForce(randomMovement, ForceMode2D.Force);
     }
 
@@ -131,13 +129,13 @@ public class EnemyAi : MonoBehaviour
     private IEnumerator OscillateMovement()
     {
 
-        if (transform.position.x < Target.transform.position.x && !isRunnning) // is left of target
+        if (transform.position.x < Target.transform.position.x && !isRunnning)
         {
             rb.velocity = Vector2.zero;
             StartCoroutine(ApplyForceforTime(2f, new Vector2(1, 0)));
             yield return new WaitForSeconds(3f);
         }
-        else if (transform.position.x > Target.transform.position.x && !isRunnning) // is right
+        else if (transform.position.x > Target.transform.position.x && !isRunnning) 
         {
             rb.velocity = Vector2.zero;
             StartCoroutine(ApplyForceforTime(2f, new Vector2(-1, 0)));

@@ -23,7 +23,6 @@ public class Pickup : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
@@ -36,8 +35,8 @@ public class Pickup : MonoBehaviour
 
         if (isAttached)
         {   
-            linerenderer.SetPosition(0, transform.position); // Current object position
-            linerenderer.SetPosition(1, player.transform.position); // Player position
+            linerenderer.SetPosition(0, transform.position);
+            linerenderer.SetPosition(1, player.transform.position);
         }
 
         if (cooldown > -1)

@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
@@ -11,7 +9,6 @@ public class EnemyProjectile : MonoBehaviour
     private float CurrentshootCooldown;
     public EnemyAi enemyai;
     [SerializeField] private float projectileSpeed;
-    private bool s = false;
     private bool isAttacking = false;
     private Animator animator;
     public ParticleSystem[] shootingPFX;

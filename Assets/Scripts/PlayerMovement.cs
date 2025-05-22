@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -98,8 +97,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (CanMove)
         {
-            moveX = Input.GetAxisRaw("Horizontal"); //value -1 or 1. left or right
-            moveY = Input.GetAxisRaw("Vertical"); //value -1 or 1. down and up
+            moveX = Input.GetAxisRaw("Horizontal");
+            moveY = Input.GetAxisRaw("Vertical");
 
             moveDirection = new Vector2(moveX, moveY).normalized;
 
@@ -162,12 +161,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb != null)
         {
-            Vector2 targetVelocity = moveDirection * CurrentSpeed; // desired velocity based on input
-            Vector2 velocityReq = targetVelocity - rb.velocity; // how much we need to change the velocity
+            Vector2 targetVelocity = moveDirection * CurrentSpeed;
+            Vector2 velocityReq = targetVelocity - rb.velocity;
 
-            Vector2 moveforce = velocityReq * acceleration; //calculate the force needed to reach the target velocity considering acceleration
+            Vector2 moveforce = velocityReq * acceleration;
 
-            rb.AddForce(moveforce * Time.deltaTime, ForceMode2D.Force); //applyes the movement to the rb
+            rb.AddForce(moveforce * Time.deltaTime, ForceMode2D.Force);
 
             acceleration = CurrentSpeed + 325 / 0.9f;
         }
@@ -198,12 +197,12 @@ public class PlayerMovement : MonoBehaviour
         while (time < duration)
         {
             CanMove = false;
-            Vector2 targetVelocity = LastLookDir * CurrentSpeed; // desired velocity based on input
-            Vector2 velocityReq = targetVelocity - rb.velocity; // how much we need to change the velocity
+            Vector2 targetVelocity = LastLookDir * CurrentSpeed;
+            Vector2 velocityReq = targetVelocity - rb.velocity;
 
-            Vector2 moveforce = velocityReq * acceleration; //calculate the force needed to reach the target velocity considering acceleration
+            Vector2 moveforce = velocityReq * acceleration;
 
-            rb.AddForce(moveforce * Time.deltaTime, ForceMode2D.Force); //applyes the movement to the rb
+            rb.AddForce(moveforce * Time.deltaTime, ForceMode2D.Force);
 
             acceleration = CurrentSpeed + 325 / 0.9f;
 

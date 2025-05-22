@@ -13,7 +13,7 @@ public class EnemyShooterAI : MonoBehaviour
     [SerializeField] private float oscillationWidth = 2f;
 
     private bool isOscillating = false;
-    private float oscillationDirection = 1f; // 1 for right, -1 for left
+    private float oscillationDirection = 1f;
     private Vector2 oscillationCenter;
 
     private EnemyHp enemyHp;
@@ -39,7 +39,6 @@ public class EnemyShooterAI : MonoBehaviour
 
             if (!isOscillating)
             {
-                // Move directly towards the target until within orbit distance
                 if (distanceToTarget > orbitDistance)
                 {
                     Vector2 direction = (Target.transform.position - transform.position).normalized;
@@ -48,7 +47,6 @@ public class EnemyShooterAI : MonoBehaviour
                 }
                 else
                 {
-                    // Start oscillating once the enemy is close enough
                     isOscillating = true;
                     oscillationCenter = Target.transform.position;
                     rb.velocity = Vector2.zero;
@@ -59,7 +57,6 @@ public class EnemyShooterAI : MonoBehaviour
             {
                 OscillateAroundTarget();
 
-                // Check if enemy is close enough to shoot
                 if (distanceToTarget <= shootRange && Time.time > lastShootTime + shootCooldown)
                 {
                     ShootAtTarget();
@@ -76,13 +73,11 @@ public class EnemyShooterAI : MonoBehaviour
 
     private void OscillateAroundTarget()
     {
-        // Move left and right around the oscillation center (target position)
         float xPosition = Mathf.PingPong(Time.time * oscillationSpeed, oscillationWidth) - (oscillationWidth / 2f);
         Vector2 newPos = oscillationCenter + new Vector2(xPosition * oscillationDirection, 0);
 
         transform.position = newPos;
 
-        // Flip direction when reaching the edges
         if (Mathf.Abs(xPosition) >= (oscillationWidth / 2f))
         {
             oscillationDirection *= -1;
@@ -95,7 +90,7 @@ public class EnemyShooterAI : MonoBehaviour
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Vector2 direction = (Target.transform.position - transform.position).normalized;
-            projectile.GetComponent<Rigidbody2D>().velocity = direction * 10f; // Set your desired projectile speed here
+            projectile.GetComponent<Rigidbody2D>().velocity = direction * 10f;
         }
     }
 }

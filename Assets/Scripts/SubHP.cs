@@ -8,7 +8,6 @@ public class SubHP : MonoBehaviour
     public float HP = 20;
     public float CurrentHP = 5;
     public float DmgState = 2;
-    // Update is called once per frame
     public AudioSource Clonk;
     public TextMeshProUGUI wintext;
 

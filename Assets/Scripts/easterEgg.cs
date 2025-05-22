@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class easterEgg : MonoBehaviour
@@ -24,12 +22,12 @@ public class easterEgg : MonoBehaviour
                 if (currentIndex == Code.Length)
                 {
                     uppgrademanager.Money = 99999999;
-                    currentIndex = 0; // Reset for future inputs
+                    currentIndex = 0;
                 }
             }
             else
             {
-                currentIndex = 0; // Reset if the wrong key is pressed
+                currentIndex = 0;
             }
         }
     }

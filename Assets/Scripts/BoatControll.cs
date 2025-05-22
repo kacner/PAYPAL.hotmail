@@ -56,7 +56,7 @@ public class BoatControll : MonoBehaviour
             AimTurret();
             
 
-            if (Input.GetKey(KeyCode.Mouse1)) // Shooting starts
+            if (Input.GetKey(KeyCode.Mouse1))
             {
                 holdtimer += Time.deltaTime;
                 holdtimer = Mathf.Clamp(holdtimer, 0, bowHoldTime);
@@ -64,7 +64,7 @@ public class BoatControll : MonoBehaviour
                 harpoonSprite.enabled = false;
                 animator.SetBool("drawing", true);
             }
-            else // Mouse1 button is not held
+            else
             {
                 if (holdtimer > (bowHoldTime - 0.4f))
                 {
@@ -88,13 +88,11 @@ public class BoatControll : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
 
-        // Calculate the angle to look at
         Vector3 aimDirection = mousePos - turret.position;
         float targetAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         targetAngle = Mathf.Clamp(targetAngle, minAngle, maxAngle);
 
-        // Smoothly rotate the turret
-        float rotationSpeed = 5f; // Adjust this speed as desired
+        float rotationSpeed = 5f;
         float currentAngle = turret.localRotation.eulerAngles.z;
         float smoothAngle = Mathf.LerpAngle(currentAngle, targetAngle, Time.deltaTime * rotationSpeed);
 

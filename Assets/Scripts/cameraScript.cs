@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.UIElements;
 
 public class cameraScript : MonoBehaviour
 {
@@ -77,7 +75,6 @@ public class cameraScript : MonoBehaviour
     {
         if (playerMovement.ShouldCameraFollow)
         {
-            //transform.position = new Vector3(transform.position.x, playerMovement.transform.position.y, -10);
             transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, playerMovement.transform.position.y, followSpeed * Time.deltaTime), -10);
         }
     }

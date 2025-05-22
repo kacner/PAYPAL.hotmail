@@ -6,9 +6,9 @@ public class SubMovement : MonoBehaviour
     public PlayerMovement playermovement;
     public GameObject SubDestination;
     public ParticleSystem[] Particles;
-    public GameObject[] things;
+    public GameObject[] WinUielement;
     public ParticleSystem[] DeathParticles;
-    public GameObject fuck;
+    public GameObject UnknownGameobject;
     public AudioSource audiosoruce;
     public AudioSource BUbblesaudiosoruce;
     public ActivateTurret activeateturret;
@@ -23,7 +23,7 @@ public class SubMovement : MonoBehaviour
         }
 
         playermovement.ShouldCameraFollow = false;
-        StartCoroutine(hsjshjs());
+        StartCoroutine(DestroyAfter());
         activeateturret.active = false;
         playermovement.CanMove = false;
         playermovement.gameObject.transform.SetParent(this.transform);
@@ -42,16 +42,16 @@ public class SubMovement : MonoBehaviour
         playermovement.FORCECLouseInventory();
     }
 
-    IEnumerator hsjshjs()
+    IEnumerator DestroyAfter()
     {
         yield return new WaitForSeconds(3f);
-        foreach (GameObject item in things)
+        foreach (GameObject item in WinUielement)
         {
             item.SetActive(true);
         }
     }
 
-    IEnumerator LOoseGame()
+    IEnumerator LoseGame()
     {
         activeateturret.active = false;
         playermovement.CanMove = false;
@@ -63,12 +63,12 @@ public class SubMovement : MonoBehaviour
             item.Play();
         }
         yield return new WaitForSeconds(3f);
-        fuck.SetActive(true);
+        UnknownGameobject.SetActive(true);
     }
     public void LooseGame()
     {
         playermovement.CameraScript.changeToSub();
-        StartCoroutine(LOoseGame());
+        StartCoroutine(LoseGame());
         playermovement.FORCECLouseInventory();
     }
 }

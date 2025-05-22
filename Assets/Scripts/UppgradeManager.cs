@@ -13,52 +13,37 @@ public class UppgradeManager : MonoBehaviour
     [Space(40)]
 
     [SerializeField] public int HealingUpgradeAmount = 0;
-
     [SerializeField] private int HealingWantToBuyint = 0;
-
     public TextMeshProUGUI HealingBought;
-
     [SerializeField] private int HealingCost = 5;
 
     [Space(40)]
 
     [SerializeField] public int DamageUpgradeAmount = 0;
-
     [SerializeField] private int DamageWantToBuyint = 0;
-
     public TextMeshProUGUI DamageBought;
-
     [SerializeField] private int DamageCost = 5;
 
 
     [Space(40)]
 
     [SerializeField] public int QuickUpgradeAmount = 0;
-
     [SerializeField] private int QuickWantToBuyint = 0;
-
     public TextMeshProUGUI QuickBought;
-
     [SerializeField] private int QuickCost = 5;
 
     [Space(40)]
 
     [SerializeField] public int WalkUpgradeAmount = 0;
-
     [SerializeField] private int WalkWantToBuyint = 0;
-
     public TextMeshProUGUI WalkBought;
-
     [SerializeField] private int WalkCost = 5;
 
     [Space(40)]
 
     [SerializeField] public int MineUpgradeAmount = 0;
-
     [SerializeField] private int MineWantToBuyint = 0;
-
     public TextMeshProUGUI MineBought;
-
     [SerializeField] private int MineCost = 5;
 
     [Space(40)]
@@ -66,7 +51,6 @@ public class UppgradeManager : MonoBehaviour
     private int FinalCost = 0;
     public TextMeshProUGUI FinalCostText;
     public SubHP subhp;
-
     public PlayerMovement playermovement;
 
 
@@ -78,54 +62,34 @@ public class UppgradeManager : MonoBehaviour
     void UpdateCost()
     {
         if (HealingWantToBuyint > 0)
-        {
             HealingBought.text = HealingUpgradeAmount.ToString() + "+" + HealingWantToBuyint.ToString();
-        }
         else
-        {
             HealingBought.text = HealingUpgradeAmount.ToString();
-        }
 
 
         
         if (DamageWantToBuyint > 0)
-        {
             DamageBought.text = DamageUpgradeAmount.ToString() + "+" + DamageWantToBuyint.ToString();
-        }
         else
-        {
             DamageBought.text = DamageUpgradeAmount.ToString();
-        }
         
 
         
         if (QuickWantToBuyint > 0)
-        {
             QuickBought.text = QuickUpgradeAmount.ToString() + "+" + QuickWantToBuyint.ToString();
-        }
         else
-        {
             QuickBought.text = QuickUpgradeAmount.ToString();
-        }
         
         
         if (WalkWantToBuyint > 0)
-        {
             WalkBought.text = WalkUpgradeAmount.ToString() + "+" + WalkWantToBuyint.ToString();
-        }
         else
-        {
             WalkBought.text = WalkUpgradeAmount.ToString();
-        }
         
         if (MineWantToBuyint > 0)
-        {
             MineBought.text = MineUpgradeAmount.ToString() + "+" + MineWantToBuyint.ToString();
-        }
         else
-        {
             MineBought.text = MineUpgradeAmount.ToString();
-        }
 
 
         FinalCost = (HealingWantToBuyint * HealingCost) + (DamageWantToBuyint * DamageCost) + (QuickWantToBuyint * QuickCost) + (WalkWantToBuyint * WalkCost) + (MineWantToBuyint * MineCost);
@@ -141,9 +105,7 @@ public class UppgradeManager : MonoBehaviour
     public void AddHealing()
     {
         if (HealingUpgradeAmount + HealingWantToBuyint < MaxUppgradeAmount)
-        {
             HealingWantToBuyint++;
-        }
 
         UpdateCost();
         print("Add");
@@ -153,9 +115,7 @@ public class UppgradeManager : MonoBehaviour
     public void AddDamage()
     {
         if (DamageUpgradeAmount + DamageWantToBuyint < MaxUppgradeAmount)
-        {
             DamageWantToBuyint++;
-        }
 
         UpdateCost();
         print("Add");
@@ -165,9 +125,7 @@ public class UppgradeManager : MonoBehaviour
     public void AddQuick()
     {
         if (QuickUpgradeAmount + QuickWantToBuyint < MaxUppgradeAmount)
-        {
             QuickWantToBuyint++;
-        }
 
         UpdateCost();
         print("Add");
@@ -178,9 +136,7 @@ public class UppgradeManager : MonoBehaviour
     {
 
         if (WalkUpgradeAmount + WalkWantToBuyint < MaxUppgradeAmount)
-        {
             WalkWantToBuyint++;
-        }
         UpdateCost();
         print("Add");
         MinimalClick.Play();
@@ -189,9 +145,8 @@ public class UppgradeManager : MonoBehaviour
     public void AddMine()
     {
         if (MineUpgradeAmount + MineWantToBuyint < MaxUppgradeAmount)
-        {
             MineWantToBuyint++;
-        }
+
         UpdateCost();
         print("Add");
         MinimalClick.Play();

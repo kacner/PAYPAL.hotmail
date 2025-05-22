@@ -1,4 +1,3 @@
-using Mono.Cecil.Cil;
 using System.Collections;
 using UnityEngine;
 
@@ -66,42 +65,11 @@ public class EnemyHp : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CurrentInvincibilityTimer -= Time.deltaTime; //subtrakts
+        CurrentInvincibilityTimer -= Time.deltaTime;
 
         CurrentInvincibilityTimer = Mathf.Clamp(CurrentInvincibilityTimer, 0, invincibilityTimer);
     }
-
-    public void TakeDmg(int dmg, Vector3 AttackerPos, float KnockBackAmount) //sword
-    {
-        if (CurrentInvincibilityTimer <= 0)
-        {
-            dmgSystem.Play();
-
-            applyKnockback(AttackerPos, KnockBackAmount);
-            StartCoroutine(flashDMGcolor());
-
-            if ((current_HP - dmg) <= 0)
-            {
-                DisableCollider();
-
-                StartCoroutine(RollDeathCGI());
-
-                isDead = true;
-            }
-            else
-            {
-                current_HP -= dmg;
-            }
-
-
-            CurrentInvincibilityTimer = invincibilityTimer;
-        }
-        else
-        {
-            DisableCollider();
-        }
-    }
-    public void TakeDmg(int dmg, Vector3 AttackerPos, float KnockBackAmount, GameObject Arrow) //bow
+    public void TakeDmg(int dmg, Vector3 AttackerPos, float KnockBackAmount, GameObject Arrow)
     {
         if (CurrentInvincibilityTimer <= 0)
         {
@@ -133,7 +101,7 @@ public class EnemyHp : MonoBehaviour
     {
         foreach (Transform child in protectedObjects)
         {
-            child.SetParent(null); //make every children an orphan
+            child.SetParent(null);
         }
     }
     private IEnumerator suicide()
@@ -145,7 +113,7 @@ public class EnemyHp : MonoBehaviour
             Destroy(protectedObjects[i].gameObject);
         }
 
-        Destroy(gameObject); //commit suicide
+        Destroy(gameObject);
     }
 
     private void applyKnockback(Vector3 attackerPos, float knockbackAmount)
@@ -176,7 +144,7 @@ public class EnemyHp : MonoBehaviour
 
         while (ElapsedTime < Duration)
         {
-            if (!particlesPlayed && ElapsedTime >= (Duration * 0.4f)) //halfway through
+            if (!particlesPlayed && ElapsedTime >= (Duration * 0.4f))
             {
                 foreach (ParticleSystem deathParticle in ActivatingDeathParticles)
                 {

@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-
-
-
 public class Enemy : MonoBehaviour
 {
     public GameObject Wall;
@@ -18,7 +13,6 @@ public class Enemy : MonoBehaviour
     public float accelerationTime = 5f;
     public float maxSpeed = 20f;
     private Vector2 movement;
-    private float timeLeft;
     private float ChangeDirectionCD;
 
     [SerializeField] GameObject WaypointGroup;
@@ -29,14 +23,11 @@ public class Enemy : MonoBehaviour
     private Camera mainCamera;
     private float distance;
     public Rigidbody2D rb;
-    //public Transform boundary;
 
     [SerializeField] private float ScreenBarrier;
-    // Start is called before the first frame update
     private void Start()
     {
         float randomDirection = UnityEngine.Random.Range(0, 2) == 0 ? -5f : 5f;
-        //movement = new Vector2(randomDirection, 0).normalized;
         rb = GetComponent<Rigidbody2D>();
         movement = transform.up;
         mainCamera = Camera.main;
@@ -45,27 +36,11 @@ public class Enemy : MonoBehaviour
         WaypointGroup = GameObject.FindGameObjectWithTag("EnemyWaypoint");
         waypoints = WaypointGroup.GetComponentsInChildren<Transform>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         ShootAtPlayer();
         AimAtPlayer();
-        //KeepWithinCameraBounds();
-       
-
-        /*if ((movement.x > 0 && transform.position.y >= boundary.position.y) ||
-        (movement.x < 0 && transform.position.y <= boundary.position.y))
-        {
-            Debug.Log("Boundary reached, reversing direction!");
-            movement = -movement; // Reverse direction
-            ChangeDirectionCD = 0.5f; // Optional short cooldown
-        }*/
-        /*if (timeLeft <= 0)
-        {
-            //ChangeDirection();
-            timeLeft = accelerationTime;
-        }*/
+      
         distance = Vector2.Distance(transform.position, Wall.transform.position);
         Vector2 direction = (Wall.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -81,28 +56,7 @@ public class Enemy : MonoBehaviour
         else
         {
             RandomWayPointMovemment();
-            //ChangeDirection();
-
-            //rb.velocity = Vector2.zero;
-            //Debug.Log("stop");
-
-            /*timeLeft -= Time.deltaTime;
-            if (timeLeft <= 0)
-            {
-                float randomDirection = UnityEngine.Random.Range(-5f, 5f) >= 0 ? 5f : -5f;
-
-                Vector3 screenDirection = new Vector3(randomDirection, 0, Camera.main.nearClipPlane);
-                Vector3 worldDirection = Camera.main.ScreenToWorldPoint(screenDirection) - Camera.main.transform.position;
-
-                movement = worldDirection.normalized;
-                timeLeft = accelerationTime;
-            }
-
-            transform.Translate(movement * maxSpeed * Time.deltaTime);*/
         }
-
-        //KeepWithinCameraBounds();
-
     }
 
     private void RandomWayPointMovemment()
@@ -135,10 +89,6 @@ public class Enemy : MonoBehaviour
         }
 
         transform.position += (Vector3)movement * speed * Time.deltaTime;
-        //float randomX = UnityEngine.Random.Range(-1f, 1f);
-        //float randomY = UnityEngine.Random.Range(-1f, 1f);
-
-        //movement = new Vector2(randomX, randomY).normalized;
     }
 
 

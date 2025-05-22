@@ -25,25 +25,15 @@ public class WaveSpawner : MonoBehaviour
 
     [SerializeField] private GameObject[] spawnpoints;
     [SerializeField] public List<GameObject> allSpawnedEnemyes;
-
     public TextMeshProUGUI EnemyesLeft;
     public GameObject EnemyesLeftGameobject;
     public TextMeshProUGUI TimeTillNextRound;
     public float TimeTillNextRoundfloat;
-    // Update is called once per frame
-
     public AudioSource StartRoundSound;
-
-    //public AudioSource FightMusic;
-
     public UppgradeManager uppgrademanager;
-
     public SubHP subhp;
-
     public SubMovement submovement;
-
     public ActivateTurret activateturret;
-
     public int CurrentWave = 1;
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI waveText1;
@@ -86,16 +76,15 @@ public class WaveSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
 
-        while (true)//may cause memory leak
+        while (true)
         {
-            while (IsWaveActive) //may cause memory leak
+            while (IsWaveActive)
             {
                 yield return null;
             }
 
             IsWaveOnCooldown = true;
             TimeTillNextRoundfloat = TimeBetweenWaves;
-            //StartCoroutine(StopFightMusic());
             yield return new WaitForSeconds(TimeBetweenWaves);
             StartCoroutine(spawnWave());
             IsWaveOnCooldown = false;
@@ -108,7 +97,6 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator spawnWave()
     {
-        //StartCoroutine(StartFightMusic());
         IsWaveActive = true;
         CurrentWaveIntensity = waveIntensity;
 
@@ -138,15 +126,4 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(TimeBetweenSpawns);
         }
     }
-
-    /*IEnumerator StartFightMusic()
-    {
-        FightMusic.Play();
-        yield return null;
-    }
-    IEnumerator StopFightMusic()
-    {
-        FightMusic.Stop();
-        yield return null;
-    }*/
 }
